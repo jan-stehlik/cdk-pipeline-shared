@@ -21,7 +21,7 @@ class PipelineStack(Stack):
         github_token_secret_name = os.getenv('GITHUB_TOKEN', '')
 
         pipeline = CdkPipeline(self, "Pipeline",
-            pipeline_name="MyAppPipeline",
+            pipeline_name="SharedPipeline",
             cloud_assembly_artifact=cloud_assembly_artifact,
             source_action=codepipeline_actions.GitHubSourceAction(
                 action_name="GitHub",
@@ -35,8 +35,10 @@ class PipelineStack(Stack):
                 cloud_assembly_artifact=cloud_assembly_artifact,
                 install_command="npm install -g aws-cdk && pip install -r requirements.txt",
                 # build_command="mvn package",
-                synth_command="cdk synth"
+                synth_command="cdk synth",
+                copy_environment_variables=["GITHUB_TOKEN"]
             )
+            
         )
 
         # Do this as many times as necessary with any account and region
