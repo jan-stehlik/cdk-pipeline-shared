@@ -33,7 +33,7 @@ class PipelineStack(Stack):
             synth_action=SimpleSynthAction(
                 source_artifact=source_artifact,
                 cloud_assembly_artifact=cloud_assembly_artifact,
-                install_command="npm install -g aws-cdk",
+                install_command="npm install -g aws-cdk && pip install -r requirements.txt",
                 # build_command="mvn package",
                 synth_command="cdk synth"
             )
