@@ -35,7 +35,6 @@ class SharedStack(core.Stack):
             self, "Vpc",
             max_azs=2
         )
-        vpc.node.default_child.__getattribute__("")
 
         # requied vpc id to retrieve vpc info using vpc from attributres method on dependent stack
         ssm.StringParameter(
