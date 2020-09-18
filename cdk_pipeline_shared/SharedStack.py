@@ -35,6 +35,7 @@ class SharedStack(core.Stack):
             self, "Vpc",
             max_azs=2
         )
+        vpc.node.default_child.__getattribute__("")
 
         # requied vpc id to retrieve vpc info using vpc from attributres method on dependent stack
         ssm.StringParameter(
@@ -50,6 +51,13 @@ class SharedStack(core.Stack):
             string_list_value=vpc.availability_zones
         )
 
+        # requied vpc az's to retrieve vpc info using vpc from attributres method on dependent stack
+        ssm.StringListParameter(
+            self, 'VpcPublicSubnetsSSM',
+            parameter_name="/dev/network/vpc/vpc-public-subnets",
+            string_list_value=vpc.public_subnets
+        )
+
         # requied security group name to retrieve ecs cluster info
 
         vpc_sgp = vpc.node.default_child.__getattribute__(
@@ -57,7 +65,7 @@ class SharedStack(core.Stack):
 
         ssm.StringParameter(
             self, 'SgIdSSM',
-            parameter_name="/dev/network/vpc/security-group-name",
+            parameter_name="/dev/network/vpc/security-group-id",
             string_value=vpc_sgp
         )
 
