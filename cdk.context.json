@@ -13,7 +13,6 @@
     "us-east-2c"
   ],
   "availability-zones:account=462864815626:region=us-west-1": [
-    "us-west-1a",
     "us-west-1b",
     "us-west-1c"
   ],
