@@ -41,6 +41,9 @@ class PipelineStack(Stack):
             
         )
 
+        pipeline.add_application_stage(SharedStage(self, 'Testing',
+            env=Environment(account="462864815626", region="us-west-1")))
+
         # Do this as many times as necessary with any account and region
         # Account and region may be different from the pipeline's.
         pipeline.add_application_stage(SharedStage(self, 'Prod',
